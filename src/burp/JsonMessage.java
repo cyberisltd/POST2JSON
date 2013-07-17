@@ -78,7 +78,8 @@ class JsonMessage {
         String delim = "";
         for (IParameter i : myJsonParameters) {
             sb.append(delim).append("\"").append(i.getName().replace('"', '\"'))
-                    .append("\":").append("\"").append(i.getValue()).append("\"");
+                    .append("\":").append("\"").append(i.getValue()
+                    .replace('"', '\"')).append("\"");
             delim = ",";
         }
         sb.append("}");
