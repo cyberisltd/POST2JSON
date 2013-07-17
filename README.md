@@ -5,7 +5,7 @@ POST2JSON
 * Copyright: Cyberis Limited 2013
 * License: GPLv3 (See LICENSE)
 
-Burp Suite Extension to convert a POST request to JSON message, moving any .NET request verification token ('__RequestVerificationToken') to HTTP headers if present.
+Burp Suite Extension to convert a POST request to a JSON message, moving any present .NET request verification token ('__RequestVerificationToken') to the HTTP request header.
 
 Installation
 ============
@@ -15,7 +15,7 @@ Usage
 =====
 If you have a POST request within an editor window, right clicking will now present a new menu item 'POST2JSON'.
 
-Selecting the option will change the request to a correctly formatted JSON message, moving any present .NET '__RequestVerificationToken' into the HTTP request header.
+Selecting the option will change the request to a correctly formatted JSON message, moving any present .NET '__RequestVerificationToken' to the HTTP request header.
 
 Burp's history will be updated to reflect the editing request. To 'revert' the request method change, Ctrl-z will get you back to the orginal request (prior to 'Forward'ing of course).
 
