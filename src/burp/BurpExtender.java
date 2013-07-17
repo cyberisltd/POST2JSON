@@ -50,7 +50,7 @@ public class BurpExtender implements IBurpExtender {
                 + "and/or modify it under the terms of the GNU General Public "
                 + "License as published by the Free Software Foundation, either "
                 + "version 3 of the License, or (at your option) any later version.\n");
-        stdout.println("Kindly report all issues via https://www.github.com/cyberisltd/Post2Json");
+        stdout.println("Kindly report all issues via https://www.github.com/cyberisltd/POST2JSON");
 
         //Load the menu item, passsing it this Extender
         callbacks.registerContextMenuFactory(new Post2JsonMenuFactory(this));
