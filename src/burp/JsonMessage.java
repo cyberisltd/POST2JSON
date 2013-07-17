@@ -62,7 +62,8 @@ class JsonMessage {
         for (IParameter i : parameters) {
             if (i.getType() == IParameter.PARAM_BODY) {
                 if (i.getName().equals("__RequestVerificationToken")) {
-                    myHeaders.add("__RequestVerificationToken: " + i.getValue());
+                    String value = myExtender.getHelpers().urlDecode(i.getValue());
+                    myHeaders.add("__RequestVerificationToken: " + value);
                 } else {
                     myJsonParameters.add(i);
                 }
@@ -76,8 +77,8 @@ class JsonMessage {
         sb.append("{");
         String delim = "";
         for (IParameter i : myJsonParameters) {
-            sb.append(delim).append("\"").append(i.getName()).append("\":");
-            sb.append("\"").append(i.getValue()).append("\"");
+            sb.append(delim).append("\"").append(i.getName().replace('"', '\"'))
+                    .append("\":").append("\"").append(i.getValue()).append("\"");
             delim = ",";
         }
         sb.append("}");
