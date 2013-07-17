@@ -59,9 +59,7 @@ public class Post2JsonMenuFactory implements IContextMenuFactory {
 
                 List<JMenuItem> menu = new ArrayList<>();
 
-                ImageIcon menuLogo = new ImageIcon(getClass()
-                        .getResource("images/cyberislogo.png"));
-                JMenuItem post2Json = new JMenuItem("Change POST Request to JSON", menuLogo);
+                JMenuItem post2Json = new JMenuItem("Change POST Request to JSON");
 
                 //Add the action listener
                 post2Json.addActionListener(new MenuActionListener(context));

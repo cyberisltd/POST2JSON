@@ -77,9 +77,12 @@ class JsonMessage {
         sb.append("{");
         String delim = "";
         for (IParameter i : myJsonParameters) {
-            sb.append(delim).append("\"").append(i.getName().replace('"', '\"'))
-                    .append("\":").append("\"").append(i.getValue()
-                    .replace('"', '\"')).append("\"");
+            String name = myExtender.getHelpers().urlDecode(i.getName()
+                    .replace("\"","\\\""));
+            String value = myExtender.getHelpers().urlDecode(i.getValue()
+                    .replace("\"","\\\""));
+            sb.append(delim).append("\"").append(name)
+                    .append("\":").append("\"").append(value).append("\"");
             delim = ",";
         }
         sb.append("}");
