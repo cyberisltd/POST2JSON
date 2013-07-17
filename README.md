@@ -9,7 +9,7 @@ Burp Suite Extension to convert a POST request to a JSON message, moving any pre
 
 Installation
 ============
-In recent versions of Burp, all you need to do is open the 'Extender' tab within Burp and select POST2JSONBurpExtender.jar.
+In recent versions of Burp, all you need to do is open the 'Extender' tab within Burp, click 'Add' and select POST2JSONBurpExtender.jar.
 
 Usage
 =====
