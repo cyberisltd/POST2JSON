@@ -11,6 +11,8 @@ Installation
 ============
 In recent versions of Burp, all you need to do is open the 'Extender' tab within Burp, click 'Add' and select POST2JSONBurpExtender.jar.
 
+Download the latest version here - https://github.com/cyberisltd/POST2JSON/blob/master/dist/POST2JSONBurpExtender.jar?raw=true
+
 Usage
 =====
 If you have a POST request within an editor window, right clicking will now present a new menu item 'POST2JSON'.
