@@ -57,6 +57,9 @@ class JsonMessage {
             }
         }
 
+        //Add the XMLHttpRequest header
+        myHeaders.add("X-Requested-With: XMLHttpRequest");
+
         //Construct parameters, adding the verification token to the headers if found
         List<IParameter> parameters = myRequest.getParameters();
         for (IParameter i : parameters) {
@@ -77,10 +80,15 @@ class JsonMessage {
         sb.append("{");
         String delim = "";
         for (IParameter i : myJsonParameters) {
-            String name = myExtender.getHelpers().urlDecode(i.getName()
-                    .replace("\"","\\\""));
-            String value = myExtender.getHelpers().urlDecode(i.getValue()
-                    .replace("\"","\\\""));
+            String name = i.getName().replace("\"", "\\\"");
+            String value = "";
+
+            //Check we have a value for the parameter
+            if (!i.getValue().isEmpty()) {
+                value = myExtender.getHelpers().urlDecode(i.getValue()
+                        .replace("\"", "\\\""));
+            }
+
             sb.append(delim).append("\"").append(name)
                     .append("\":").append("\"").append(value).append("\"");
             delim = ",";
