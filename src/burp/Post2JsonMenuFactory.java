@@ -23,7 +23,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.List;
-import javax.swing.ImageIcon;
 import javax.swing.JMenuItem;
 
 /**
@@ -33,12 +32,6 @@ import javax.swing.JMenuItem;
  * Menu factory to create relevant menu items and register action listeners
  */
 public class Post2JsonMenuFactory implements IContextMenuFactory {
-
-    private BurpExtender myExtender;
-
-    Post2JsonMenuFactory(BurpExtender extender) {
-        myExtender = extender;
-    }
 
     @Override
     public List<JMenuItem> createMenuItems(IContextMenuInvocation context) {
@@ -54,7 +47,7 @@ public class Post2JsonMenuFactory implements IContextMenuFactory {
             byte[] request = context.getSelectedMessages()[0].getRequest();
 
             //Only display menu if request is URL encoded (rather that JSON/XML etc)
-            if (myExtender.getHelpers().analyzeRequest(request).getContentType()
+            if (BurpExtender.helpers.analyzeRequest(request).getContentType()
                     == IRequestInfo.CONTENT_TYPE_URL_ENCODED) {
 
                 List<JMenuItem> menu = new ArrayList<>();
@@ -85,7 +78,7 @@ public class Post2JsonMenuFactory implements IContextMenuFactory {
             IHttpRequestResponse message = myContext.getSelectedMessages()[0];
 
             //Create a new JSON representation of the message
-            JsonMessage jsonMessage = new JsonMessage(myExtender, message);
+            JsonMessage jsonMessage = new JsonMessage(message);
 
             //Update the editor with the new JSON message
             message.setRequest(jsonMessage.getMessage());

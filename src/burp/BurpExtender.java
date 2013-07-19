@@ -29,7 +29,7 @@ import java.io.PrintWriter;
  */
 public class BurpExtender implements IBurpExtender {
 
-    private IExtensionHelpers helpers;
+    static IExtensionHelpers helpers;
 
     @Override
     public void registerExtenderCallbacks(IBurpExtenderCallbacks callbacks) {
@@ -53,15 +53,8 @@ public class BurpExtender implements IBurpExtender {
         stdout.println("Kindly report all issues via https://www.github.com/cyberisltd/POST2JSON");
 
         //Load the menu item, passsing it this Extender
-        callbacks.registerContextMenuFactory(new Post2JsonMenuFactory(this));
+        callbacks.registerContextMenuFactory(new Post2JsonMenuFactory());
 
         helpers = callbacks.getHelpers();
-    }
-
-    /**
-     * @return IExtensionHelpers helpers
-     */
-    public IExtensionHelpers getHelpers() {
-        return helpers;
     }
 }

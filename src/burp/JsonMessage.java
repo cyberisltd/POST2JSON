@@ -34,14 +34,12 @@ class JsonMessage {
 
     private final List<IParameter> myParameters;
     private final List<IParameter> myJsonParameters;
-    private final BurpExtender myExtender;
     private final List<String> myHeaders;
     private final IRequestInfo myRequest;
     private final byte[] body;
 
-    public JsonMessage(BurpExtender extender, IHttpRequestResponse message) {
-        myExtender = extender;
-        myRequest = myExtender.getHelpers().analyzeRequest(message.getRequest());
+    public JsonMessage(IHttpRequestResponse message) {
+        myRequest = BurpExtender.helpers.analyzeRequest(message.getRequest());
         myHeaders = new ArrayList<>();
         //myParamerts will hold all parameters EXCEPT JSON (body) parameters
         myParameters = new ArrayList<>();
@@ -65,7 +63,7 @@ class JsonMessage {
         for (IParameter i : parameters) {
             if (i.getType() == IParameter.PARAM_BODY) {
                 if (i.getName().equals("__RequestVerificationToken")) {
-                    String value = myExtender.getHelpers().urlDecode(i.getValue());
+                    String value = BurpExtender.helpers.urlDecode(i.getValue());
                     myHeaders.add("__RequestVerificationToken: " + value);
                 } else {
                     myJsonParameters.add(i);
@@ -85,7 +83,7 @@ class JsonMessage {
 
             //Check we have a value for the parameter
             if (!i.getValue().isEmpty()) {
-                value = myExtender.getHelpers().urlDecode(i.getValue()
+                value = BurpExtender.helpers.urlDecode(i.getValue()
                         .replace("\"", "\\\""));
             }
 
@@ -105,6 +103,6 @@ class JsonMessage {
      * @return byte[]
      */
     public byte[] getMessage() {
-        return myExtender.getHelpers().buildHttpMessage(myHeaders, body);
+        return BurpExtender.helpers.buildHttpMessage(myHeaders, body);
     }
 }
